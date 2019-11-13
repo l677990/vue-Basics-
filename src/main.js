@@ -5,22 +5,31 @@ import VueRouter from "vue-router"
 //1.2安装路由
 Vue.use(VueRouter)
 
-// 2.1导入vue-axios
-import axios from "axios"
-// Vue.prototype.$http=axios
-// Vue.use(VueAxios)
+// 2.1导入vue-resource
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+// 设置请求的根路径
+Vue.http.options.root='http://vue.studyit.io';
+// 设置全局post时候表单数据格式组织的形式
+Vue.http.options.emulateJSON = true;
 
 //引入Mint-ui部分css
-import {Header,Swipe, SwipeItem } from 'mint-ui'
+import {Header,Swipe, SwipeItem,Button } from 'mint-ui'
 Vue.component(Header.name,Header)
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 //引入MUI框架
 import "./lib/mui/css/mui.min.css"
 import "./lib/mui/css/icons-extra.css"
-//引入lib-flexible(rem单位)
-import "lib-flexible/flexible"
+
+//导入格式化时间的插件
+import moment from "moment"
+//定义全局的过滤器
+Vue.filter("glq",(dataStr,pattern="YYY-MM-DD HH:mm:ss")=>{
+   return moment(dataStr).format(pattern)
+})
 
 //1.3导入自己的router.js路由模块
 import router from "./router.js"
