@@ -14,11 +14,12 @@ Vue.http.options.root='http://vue.studyit.io';
 Vue.http.options.emulateJSON = true;
 
 //引入Mint-ui部分css
-import {Header,Swipe, SwipeItem,Button } from 'mint-ui'
+import {Header,Swipe, SwipeItem,Button,Lazyload } from 'mint-ui'
 Vue.component(Header.name,Header)
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
+Vue.use(Lazyload);
 
 //引入MUI框架
 import "./lib/mui/css/mui.min.css"
