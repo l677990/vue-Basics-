@@ -5,7 +5,11 @@
         "@babel/plugin-transform-runtime",
         ["component", {
             "libraryName": "mint-ui",
-            "style": true,
-          }]
+            "style": true
+          }],
+          "transform-remove-strict-mode"
+        ],
+        "ignore": [
+            "./src/lib/mui/js/*.js"
         ]
 }

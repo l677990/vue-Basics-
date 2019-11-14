@@ -23,6 +23,8 @@ Vue.component(Button.name, Button);
 //引入MUI框架
 import "./lib/mui/css/mui.min.css"
 import "./lib/mui/css/icons-extra.css"
+// import mui from './lib/mui/js/mui.js'
+// Vue.prototype.mui = mui
 
 //导入格式化时间的插件
 import moment from "moment"
