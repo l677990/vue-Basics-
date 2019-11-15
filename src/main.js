@@ -14,12 +14,17 @@ Vue.http.options.root='http://vue.studyit.io';
 Vue.http.options.emulateJSON = true;
 
 //引入Mint-ui部分css
-import {Header,Swipe, SwipeItem,Button,Lazyload } from 'mint-ui'
-Vue.component(Header.name,Header)
-Vue.component(Swipe.name, Swipe);
-Vue.component(SwipeItem.name, SwipeItem);
-Vue.component(Button.name, Button);
-Vue.use(Lazyload);
+// import {Header,Swipe, SwipeItem,Button,Lazyload } from 'mint-ui'
+// Vue.component(Header.name,Header)
+// Vue.component(Swipe.name, Swipe);
+// Vue.component(SwipeItem.name, SwipeItem);
+// Vue.component(Button.name, Button);
+// Vue.use(Lazyload);
+
+//完整引入Mint-ui
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 //引入MUI框架
 import "./lib/mui/css/mui.min.css"
@@ -27,10 +32,17 @@ import "./lib/mui/css/icons-extra.css"
 // import mui from './lib/mui/js/mui.js'
 // Vue.prototype.mui = mui
 
+//引入Vue缩略图插件(支持2.5以上版本)
+// import VuePreview from 'vue-preview'
+// Vue.use(VuePreview)
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
+
+
 //导入格式化时间的插件
 import moment from "moment"
 //定义全局的过滤器
-Vue.filter("glq",(dataStr,pattern="YYY-MM-DD HH:mm:ss")=>{
+Vue.filter("glq",(dataStr,pattern="YYYY-MM-DD HH:mm:ss")=>{
    return moment(dataStr).format(pattern)
 })
 

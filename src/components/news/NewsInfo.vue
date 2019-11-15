@@ -2,12 +2,13 @@
     <div class="newsinfo">
         <h1 class="title">{{ NewsInfo.title }}</h1>
         <p class="subtitle">
-            <span>时间:{{ NewsInfo.add_time|glq('YYYY-MM-DD HH:mm') }}</span>
+            <span>时间:</span>
             <span>点击:{{ NewsInfo.click}}次</span>
         </p>
         <hr>
-        <!-- 内容区 -->
+        <!-- 内容区域 -->
         <div class="content" v-html="NewsInfo.content"></div>
+
         <!-- 评论子组件区 -->
         <comment-box :id="this.id"></comment-box>
     </div>
@@ -33,8 +34,9 @@ export default {
                 url: 'http://www.liulongbin.top:3005/api/getnew/'+this.id,
             })
             .then((response) =>{
+                // console.log(response.data.message[0])
                 this.NewsInfo = response.data.message[0]
-                console.log(this.NewsInfo[0])
+                // console.log(this.NewsInfo)
             });
         }
     },
@@ -59,5 +61,10 @@ export default {
         color: skyblue;
         display:flex;
         justify-content: space-between;
+    }
+    .content {
+    img {
+      width: 100%;
+    }
     }
 </style>
