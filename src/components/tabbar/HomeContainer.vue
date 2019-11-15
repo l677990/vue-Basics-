@@ -2,10 +2,11 @@
     <div>  
          <!-- 轮播图 -->
          <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="items in BannerList" :key="items.id">
+            <mt-swipe-item v-for="items in BannerList" :key="items.url">
                 <img :src="items.img" alt="">
             </mt-swipe-item>
         </mt-swipe>
+       
         <!-- 九宫格-六宫格菜单 -->
          <ul class="mui-table-view mui-grid-view mui-grid-9">
 		    <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4"><router-link to="/home/newslist">
@@ -46,11 +47,9 @@ export default {
             method: 'get',
             url: 'http://www.liulongbin.top:3005/api/getlunbo',
         }).then((response)=>{
-            // console.log(response.data.message) 
             this.BannerList = response.data.message;
-            // console.log(this.BannerList)
         });
-    }
+    },
 },
 
 }
@@ -74,7 +73,6 @@ export default {
             height: 100%;
         }
     }
-  
 }
 .mui-grid-view.mui-grid-9{
     background-color: #fff;

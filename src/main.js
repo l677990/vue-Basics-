@@ -23,8 +23,8 @@ Vue.http.options.emulateJSON = true;
 
 //完整引入Mint-ui
 import MintUI from 'mint-ui'
-import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
 
 //引入MUI框架
 import "./lib/mui/css/mui.min.css"

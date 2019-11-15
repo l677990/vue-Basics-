@@ -1,53 +1,66 @@
 <template>
     <div class="buyshoplist">
-        <div class="box">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573813238238&di=b0501999ead23e470f57cf77044d4300&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201601%2F09%2F20160109112142_4fRLS.jpeg" alt="">
-            <h3>商品列表商品列表商品列表</h3>
+        <div class="box" v-for="item in buyshoplist" :key="item.id" @click="shopinfo(item.id)">
+            <img :src="item.img_url" alt="">
+            <h3>{{item.title}}</h3>
             <div class="box-info">
                 <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
+                    <span class="now">￥{{item.sell_price}}</span>
+                    <span class="old">￥{{item.market_price}}</span>
                 </p>
                 <p class="sell">
                     <span>热卖中</span>
-                    <span>剩60件</span>
+                    <span>剩{{item.stock_quantity}}件</span>
                 </p>
             </div>
         </div>
-
-        <div class="box">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573813238238&di=b0501999ead23e470f57cf77044d4300&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201601%2F09%2F20160109112142_4fRLS.jpeg" alt="">
-            <h3>商品列表商品列表商品列表商品列表商品列表商品列表商品列表商品列表商品列表商品列表商品列表商品列表</h3>
-            <div class="box-info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中&nbsp;&nbsp;剩60件</span>
-                </p>
-            </div>
-        </div>
-
-        <div class="box">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1573813238238&di=b0501999ead23e470f57cf77044d4300&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201601%2F09%2F20160109112142_4fRLS.jpeg" alt="">
-            <h3>商品列表商品列表商品列表</h3>
-            <div class="box-info">
-                <p class="price">
-                    <span class="now">￥899</span>
-                    <span class="old">￥999</span>
-                </p>
-                <p class="sell">
-                    <span>热卖中&nbsp;&nbsp;剩60件</span>
-                </p>
-            </div>
-        </div>
+        <mt-button type="danger" size="large" @click="add">加载更多</mt-button>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data() {
+        return {
+            pageindex:1, //页数，默认第一页
+            buyshoplist:[] //存放所有商品信息
+        }
+    },
+    created() {
+        this.getshoplist()
+    },
+    methods: {
+        getshoplist(){
+            this.$http.get('http://www.liulongbin.top:3005/api/getgoods?pageindex='+this.pageindex)
+            .then(response=>{
+                if(response.data.status===0){
+                    // console.log(response)
+                    this.buyshoplist = this.buyshoplist.concat(response.data.message);
+                }
+            })
+        },
+        add(){
+            this.pageindex++;
+            this.getshoplist();
+        },
+        shopinfo(id){
+            //使用JS的形式进行路由导航
+
+            //注意:一定要区分 this.$route 和 this.$router这两个对象
+            //其中: this.$route是路由【参数对象】,所有的路由参数，params,query都属于它
+            //其中: this.$router是一个路由的【导航对象】，用它 可以方便的 使用JS代码，实现路由的 前进、后退、跳转到新的URL地址
+
+            // console.log(this);
+            // 1.字符串方式跳转
+            // this.$router.push('/home/buyshopinfo/'+id);
+
+            // 2.对象方式跳转
+            // this.$router.push({path:'/home/buyshopinfo/'+id})
+
+            // 3.命名的路由跳转
+            this.$router.push({ name: 'buyshopinfo', params: { id}})
+        }
+    },
 }
 </script>
 
@@ -69,6 +82,7 @@ export default {
         padding: 2px;
         img{
             width: 100%;
+            height: 170px;
         }
         h3{
             font-size: 14px;

@@ -2,6 +2,8 @@
     <div class="app-container">
         <!-- 头部Header -->
         <mt-header fixed title="前端项目"></mt-header>
+        <span class="mui-icon mui-icon-back fh" @click="fh"></span>
+        <span class="qwq" @click="fh">返回</span>
         <!-- 中间内容 -->
         <transition>
             <router-view></router-view>
@@ -30,10 +32,21 @@
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            
+        }
+    },
+    methods: {
+        fh(){
+            this.$router.go(-1)
+        }
+    },
+}
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .app-container{
     padding-top: 40px;
 	padding-bottom: 50px;
@@ -47,6 +60,23 @@
     opacity: 0;
     transform: translateX(-100%);
     position: absolute;
+}
+
+.fh{
+    position: fixed;
+    top: 7px;
+    font-size: 25px;
+    left: 0;
+    color:#fff;
+    z-index: 100;
+}
+.qwq{
+    position: fixed;
+    top: 9px;
+    left: 20px;
+    color: #fff;
+    font-size: 15px;
+    z-index: 100;
 }
 
 .v-enter-active,
