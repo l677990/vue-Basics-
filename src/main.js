@@ -108,7 +108,7 @@ const store = new Vuex.Store({
       },
       updateShopchange(state,info){//开关的关闭和打开同步
          state.car.some(item=>{
-            if(item.id=info.id){
+            if(item.id==info.id){
                item.selected=info.selected
             }
          })

@@ -39,7 +39,7 @@
                     
 				</div>
 		</div>
-        <p>{{$store.getters.getShopSelected}}</p>
+        <!-- <p>{{$store.getters.getShopSelected}}</p> -->
     </div>
 </template>
 
