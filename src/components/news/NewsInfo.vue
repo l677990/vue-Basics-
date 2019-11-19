@@ -2,7 +2,7 @@
     <div class="newsinfo">
         <h1 class="title">{{ NewsInfo.title }}</h1>
         <p class="subtitle">
-            <span>时间:</span>
+            <span>时间:{{NewsInfo.add_time|glq}}</span>
             <span>点击:{{ NewsInfo.click}}次</span>
         </p>
         <hr>

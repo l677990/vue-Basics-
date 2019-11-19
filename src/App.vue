@@ -1,9 +1,9 @@
 <template>
     <div class="app-container">
         <!-- 头部Header -->
-        <mt-header fixed title="前端项目"></mt-header>
-        <span class="mui-icon mui-icon-back fh" @click="fh"></span>
-        <span class="qwq" @click="fh">返回</span>
+        <mt-header fixed :title=title></mt-header>
+        <span class="mui-icon mui-icon-back fh" @click="fh" v-show="flag"></span>
+        <span class="qwq" @click="fh" v-show="flag">返回</span>
         <!-- 中间内容 -->
         <transition>
             <router-view></router-view>
@@ -19,7 +19,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-lmk" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item-lmk" to="/search">
@@ -35,12 +35,48 @@
 export default {
     data() {
         return {
-            
+            flag:false,
+            title:"首页",
+        }
+    },
+    created() {
+        if(this.$route.path==="/home"){
+            this.flag = false
+        }else{
+            this.flag = true
         }
     },
     methods: {
-        fh(){
+        fh(){//点击后退
             this.$router.go(-1)
+        }
+    },
+    watch: {
+        "$route.path":function(newVal,oldVal){
+            if(newVal === "/home"){
+                this.title="首页"
+                this.flag = false
+            }else if(newVal === "/home/newslist"){
+                this.flag = true
+                this.title="新闻资讯"
+            }else if(newVal === "/home/photolist"){
+                this.flag = true
+                this.title="图片分享"
+            }else if(newVal === "/home/buyshoplist"){
+                this.flag = true
+                this.title="商品购买"
+            }else if(newVal === "/shopcar"){
+                this.flag = true
+                this.title="购物车"
+            }else if(newVal === "/vip"){
+                this.flag = true
+                this.title="会员"
+            }else if(newVal === "/search"){
+                this.flag = true
+                this.title="搜索"
+            }else{
+                this.flag = true
+            }
         }
     },
 }
