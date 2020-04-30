@@ -20,7 +20,7 @@
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "babel-preset-mobx": "^2.0.0",
     "bootstrap": "^3.4.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
